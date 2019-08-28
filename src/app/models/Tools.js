@@ -1,4 +1,4 @@
-import sequelize, { Model, Sequelize } from 'sequelize';
+import Sequelize, { Model } from 'sequelize';
 
 class Tools extends Model {
   static init(sequelize) {
