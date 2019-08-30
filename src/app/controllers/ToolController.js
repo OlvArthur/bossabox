@@ -26,7 +26,6 @@ class ToolController {
     const tags = [];
     const tag = req.query.tag;
     tags.push(tag);
-    console.log(tags);
 
     if (req.query.tag) {
       const tools = await Tool.findAll({
@@ -36,15 +35,10 @@ class ToolController {
       });
       return res.json(tools);
     }
-    /*.then(t => {
-      return res.json(t);
-    });
-    //}
-    */
+
     await Tool.findAll().then(tools => {
       return res.send(tools);
     });
-    //return res.json({ id, title, link, description, tags });
   }
 
   async delete(req, res) {
