@@ -35,7 +35,7 @@ To use the migrations in your project, run
 yarn sequelize db:migrate
 ```
 
-If it works, two new tables ( users and tools) will be in your database. If only one table comes up, try running again
+If it works, two new tables ( users and tools) will be in your database. If only one table comes up, try running again.
 In case of errors, try reinstalling the sequelize with
 
 ```sh
