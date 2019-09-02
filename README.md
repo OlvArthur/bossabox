@@ -5,6 +5,10 @@
 
 > Useful API to allow users to create and manage tons of tools 
 
+## API Blueprint
+
+The API documentation in included in the docs folder. 
+
 ## Install
 
 First you need to have nodejs installed in your machine. For that you can use [nvm](https://github.com/nvm-sh/nvm)
