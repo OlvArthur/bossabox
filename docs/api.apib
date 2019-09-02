@@ -4,3 +4,231 @@ HOST: http://localhost:3000
 # VUTTR API
 
 VUTTR is simple API allowing consumers to view and manage tools.
+
+# Group Users
+
+Resources related to users in the API
+
+## Users [/users]
+
+### Create a user [POST]
+
++ Request (application/json)
+
+        {
+            "name": "Arthur Oliveira",
+            "email": "olvarthur@gmail.com",
+            "password": "12345"
+        }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "id": 1,
+                "name": "Arthur Oliveira",
+                "email": "olvarthur@gmail.com"
+            }
+
+# Group Sessions
+
+## Session [/sessions]
+
+### Login [POST]
+
++ Request (application/json)
+
+        {
+            "name": "Arthur Oliveira",
+            "email": "olvarthur@gmail.com",
+            "password": "12345"
+        }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "user": {
+                  "id": 1,
+                  "name": "Arthur Oliveira",
+                  "email": "olvarthur@gmail.com"
+                },
+                "token":
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTY3MTc1MjM4LCJleHAiOjE1Njc2MDcyMzh9.-pvVhVmsStcUnO70h9Mg0y9vF0-yjGhpkg8AR_bPS4o"
+            }
+
+
+# Group Tools
+
+## Tools [/tools/{?tag}{id}]
+
+
+### List all or a group of tools [GET]
+
++ Parameters
+    + tag = node (optional, string) - tag with wich you can filter your search
+
++ Request (application/json)
+
+    + Auth
+
+            Bearer Token: token provided in Login
+
++ Response 400 (application/json)
+
+    + Body
+
+            {
+                "error": "Token not provided "
+            }
+
++ Response 401 (application/json)
+
+    + Body
+
+            {
+                "error": "Token does not match "
+            }
+
+
++ Response 200 (application/json)
+
+    + Body
+
+            [
+                {
+                    "id": 1,
+                    "title": "hotel",
+                    "link": "https://github.com/typicode/hotel",
+                    "description": "Local app manager. Start apps within your browser, developer tool with local .localhost domain and https out of the box.",
+                    "tags": [
+                          "node",
+                          "organizing",
+                          "webapps",
+                          "domain",
+                          "developer",
+                          "https",
+                          "proxy"
+                    ],
+                    "createdAt": "2019-08-28T16:14:45.584Z",
+                    "updatedAt": "2019-08-28T16:14:45.584Z"
+                },
+                {
+                    "id": 3,
+                    "title": "fastify",
+                    "link": "https://www.fastify.io/",
+                    "description": "Extremely fast and simple, low-overhead web framework for NodeJS. Supports HTTP2.",
+                    "tags": [
+                          "web",
+                          "framework",
+                          "node",
+                          "http2",
+                          "https",
+                          "localhost"
+                    ],
+                    "createdAt": "2019-08-28T16:15:47.562Z",
+                    "updatedAt": "2019-08-28T16:15:47.562Z"
+                },
+                {
+                    "id": 2,
+                    "title": "json-server",
+                    "link": "https://github.com/typicode/json-server",
+                    "description": "Fake REST API based on a json schema. Useful for mocking and creating APIs for front-end devs to consume in coding challenges.",
+                    "tags": [
+                          "api",
+                          "json",
+                          "schema",
+                          "node",
+                          "github",
+                          "rest"
+                    ],
+                    "createdAt": "2019-08-28T16:16:35.366Z",
+                    "updatedAt": "2019-08-28T16:16:35.366Z"
+                }
+            ]
+
+### Create tools [POST]
+
++ Request (application/json)
+
+    + Auth
+
+            Bearer Token: token provided in Login
+
+    + Body
+
+            {
+                "title": "hotel",
+                "link": "https://github.com/typicode/hotel",
+                "description": "Local app manager. Start apps within your browser, developer tool with local .localhost domain and https out of the box.""
+                "tags":["node", "organizing", "webapps", "domain", "developer", "https", "proxy"]
+            }
+
++ Response 400 (application/json)
+
+    + Body
+
+            {
+                "error": "Token not provided "
+            }
+
++ Response 401 (application/json)
+
+    + Body
+
+            {
+                "error": "Token does not match "
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "title": "hotel",
+                "link": "https://github.com/typicode/hotel",
+                "description": "Local app manager. Start apps within your browser, developer tool with local .localhost domain and https out of the box.",
+                "tags": [
+                          "node",
+                          "organizing",
+                          "webapps",
+                          "domain",
+                          "developer",
+                          "https",
+                          "proxy"
+                ],
+                "id": 10
+            }
+
+### Delete tools [DELETE]
+
++ Parameters
+    + id: 1 (required, number) - ID from the tool you want to remove
+
++ Request (application/json)
+
+    + Auth
+
+            Bearer Token: token provided in Login
+
++ Response 400 (application/json)
+
+    + Body
+
+            {
+                "error": "Token not provided "
+            }
+
++ Response 401 (application/json)
+
+    + Body
+
+            {
+                "error": "Token does not match "
+            }
+
+
++ Response 204 (application/json)
+
